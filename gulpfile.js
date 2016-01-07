@@ -2,7 +2,8 @@ var gulp = require('gulp'),
 	inSequence = require('run-sequence'),
 	del = require('del'),
 	inject = require('gulp-inject'),
-	concat = require('gulp-concat');
+	concat = require('gulp-concat'),
+	typescript = require('gulp-typescript');
 
 
 gulp.task('private:clear', function(done){
@@ -23,7 +24,13 @@ gulp.task('private:build-vendor', function(){
 		.pipe(gulp.dest('dist/scripts'));
 });
 
+gulp.task('private:build-app', function(){
+    var project = typescript.createProject('tsconfig.json');
+    var tsResult = project.src()
+        .pipe(typescript(project));
+    return tsResult.js.pipe(gulp.dest('dist'));
+});
 
 gulp.task('default', function(done){
-	inSequence('private:clear', ['private:build-vendor'], done);
+	inSequence('private:clear', ['private:build-vendor', 'private:build-app'], done);
 });

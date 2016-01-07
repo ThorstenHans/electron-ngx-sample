@@ -39,6 +39,11 @@ gulp.task('private:build-html', function(){
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('private:copy-templates', function(){
+	return gulp.src('src/templates/**.html')
+		.pipe(gulp.dest('dist/templates'));
+});
+
 gulp.task('default', function(done){
-	inSequence('private:clear', ['private:build-vendor', 'private:build-app'],'private:build-html', done);
+	inSequence('private:clear', ['private:build-vendor', 'private:build-app', 'private:copy-templates'],'private:build-html', done);
 });

@@ -23,6 +23,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-atom-electron": "^1.1.0",
+    "gulp-concat": "^2.6.0",
     "gulp-inject": "^3.0.0",
     "gulp-typescript": "^2.10.0",
     "run-sequence": "^1.1.5",

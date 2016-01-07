@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES, Location} from 'angular2/router';
 import {SplashComponent} from "../splash/splash.component";
 
 @Component({
@@ -8,7 +8,12 @@ import {SplashComponent} from "../splash/splash.component";
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-    {path: '/', name: 'Splash', useAsDefault: true, component: SplashComponent}
+    {path: '/splash', name: 'Splash', useAsDefault: true, component: SplashComponent}
 ])
 export class AppComponent {
+
+	constructor(private _location: Location){ 
+		_location.go('/splash');
+	}
+
 }

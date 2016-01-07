@@ -3,7 +3,8 @@ var gulp = require('gulp'),
 	del = require('del'),
 	inject = require('gulp-inject'),
 	concat = require('gulp-concat'),
-	typescript = require('gulp-typescript');
+	typescript = require('gulp-typescript'),
+	rename = require('gulp-rename');
 
 
 gulp.task('private:clear', function(done){
@@ -44,6 +45,12 @@ gulp.task('private:copy-templates', function(){
 		.pipe(gulp.dest('dist/templates'));
 });
 
+gulp.task('private:copy-app-package-file', function(){
+	return gulp.src('src/app.package.json')
+		.pipe(rename('package.json'))
+		.pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', function(done){
-	inSequence('private:clear', ['private:build-vendor', 'private:build-app', 'private:copy-templates'],'private:build-html', done);
+	inSequence('private:clear', ['private:build-vendor', 'private:build-app', 'private:copy-templates', 'private:copy-app-package-file' ],'private:build-html', done);
 });

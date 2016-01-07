@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, Location} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {SplashComponent} from "../splash/splash.component";
 
 @Component({
@@ -12,8 +12,8 @@ import {SplashComponent} from "../splash/splash.component";
 ])
 export class AppComponent {
 
-	constructor(private _location: Location){ 
-		_location.go('/splash');
+	constructor(private _router: Router){
+		_router.navigate(['Splash']);
 	}
 
 }

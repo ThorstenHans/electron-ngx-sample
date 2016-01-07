@@ -31,6 +31,14 @@ gulp.task('private:build-app', function(){
     return tsResult.js.pipe(gulp.dest('dist'));
 });
 
+gulp.task('private:build-html', function(){
+	var sources = gulp.src('dist/scripts/vendor.js');
+
+	return gulp.src('src/index.html')
+		.pipe(inject(sources, {ignorePath: 'dist'}))
+		.pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', function(done){
-	inSequence('private:clear', ['private:build-vendor', 'private:build-app'], done);
+	inSequence('private:clear', ['private:build-vendor', 'private:build-app'],'private:build-html', done);
 });

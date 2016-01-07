@@ -51,6 +51,11 @@ gulp.task('private:copy-app-package-file', function(){
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('private:copy-app-main-file', function(){
+	return gulp.src('src/main.js')
+		.pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', function(done){
-	inSequence('private:clear', ['private:build-vendor', 'private:build-app', 'private:copy-templates', 'private:copy-app-package-file' ],'private:build-html', done);
+	inSequence('private:clear', ['private:build-vendor', 'private:build-app', 'private:copy-templates', 'private:copy-app-package-file', 'private:copy-app-main-file'],'private:build-html', done);
 });

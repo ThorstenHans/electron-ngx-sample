@@ -2,9 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 
 @Component({
 
-    template: `
-    	<h3>Welcome to Angular2</h3>
-		<p>Check out <a href="http://www.angular.io">angular.io</a></p>`
+    templateUrl: 'templates/splash.html'
 })
 export class SplashComponent implements OnInit {
 		ngOnInit(){

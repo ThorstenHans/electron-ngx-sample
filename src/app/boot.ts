@@ -6,4 +6,4 @@ import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2
 
 
 bootstrap(AppComponent, [ROUTER_PROVIDERS, provide(LocationStrategy,
-    { useClass: HashLocationStrategy }),]);
+    { useClass: HashLocationStrategy })]);

@@ -61,7 +61,7 @@ gulp.task('private:copy-app-main-file', function(){
 var buildApp = function(platform, slug){
     gulp.src(['dist/**/*'])
         .pipe(electron({
-            version: '0.36.2',
+            version: '0.36.4',
             platform: platform }))
         .pipe(symdest('packaged-app/ng2-electron-' + slug));
 };
@@ -75,15 +75,15 @@ gulp.task('private:package-app', function(){
 
 gulp.task('default', function(done){
 	inSequence(
-		'private:clear', 
+		'private:clear',
 		[
-			'private:build-vendor', 
-			'private:build-app', 
-			'private:copy-templates', 
-			'private:copy-app-package-file', 
+			'private:build-vendor',
+			'private:build-app',
+			'private:copy-templates',
+			'private:copy-app-package-file',
 			'private:copy-app-main-file'
 		],
 		'private:build-html',
-		'private:package-app', 
+		'private:package-app',
 		done);
 });

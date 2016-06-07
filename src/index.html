@@ -2,33 +2,85 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>foo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-        <!-- inject:css -->
-        <!-- endinject -->
-    </head>
-    <body>
-    	<sampleapp>Loading Angular2 App</sampleapp>
-        <!-- inject:js -->
-        <!-- endinject -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Electron-TS-Angular2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-         <script>
-        	System.config({
-            	packages: {
-                	app: {
-                    	format: 'register',
-                    	defaultExtension: 'js'
-                	}
-            	}
-        	});
-        	System.import('app/boot').then(null, console.error.bind(console));
-    	</script>
-    </body>
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+
+<body>
+    <sample-app>Loading Angular2 App</sample-app>
+    <!-- inject:js -->
+    <!-- endinject -->
+
+    <script>
+        /**
+         * System configuration for Angular 2 samples
+         * Adjust as necessary for your application needs.
+         */
+        (function(global) {
+            // map tells the System loader where to look for things
+            var map = {
+                'app': 'app', // 'dist',
+                '@angular': 'vendor/@angular',
+                'rxjs': 'vendor/rxjs'
+            };
+            // packages tells the System loader how to load when no filename and/or no extension
+            var packages = {
+                'app': {
+                    main: 'main.js',
+                    defaultExtension: 'js'
+                },
+                'rxjs': {
+                    defaultExtension: 'js'
+                },
+            };
+            var ngPackageNames = [
+                'common',
+                'compiler',
+                'core',
+                'http',
+                'platform-browser',
+                'platform-browser-dynamic',
+                'router-deprecated',
+            ];
+            // Individual files (~300 requests):
+            function packIndex(pkgName) {
+                packages['@angular/' + pkgName] = {
+                    main: 'index.js',
+                    defaultExtension: 'js'
+                };
+            }
+            // Bundled (~40 requests):
+            function packUmd(pkgName) {
+                packages['@angular/' + pkgName] = {
+                    main: pkgName + '.umd.js',
+                    defaultExtension: 'js'
+                };
+            };
+            // Most environments should use UMD; some (Karma) need the individual index files
+            var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
+            // Add package entries for angular packages
+            ngPackageNames.forEach(setPackageConfig);
+            var config = {
+                map: map,
+                packages: packages
+            }
+            System.config(config);
+        })(this);
+
+        System.import('app/boot').then(null, console.error.bind(console));
+    </script>
+</body>
+
 </html>

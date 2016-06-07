@@ -1,5 +1,5 @@
 {
-	"name" :"foo",
-	"version": "0.0.1",
+	"name" :"Electron-TS-Angular2",
+	"version": "0.1.0",
 	"main": "main.js"
 }

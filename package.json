@@ -1,32 +1,39 @@
 {
   "name": "electron-ts-ng2",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "typings install",
+    "typings": "typings",
+    "build": "gulp default"
   },
   "keywords": [],
   "author": "Thorsten Hans <thorsten.hans@gmail.com> (http://www.xplatform.rocks/)",
   "license": "ISC",
   "dependencies": {
-    "angular2": "2.0.0-beta.0",
-    "angular2-jwt": "^0.1.4",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.3",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.0",
-    "systemjs": "0.19.6",
-    "zone.js": "0.5.10"
+    "@angular/common": "2.0.0-rc.1",
+    "@angular/compiler": "2.0.0-rc.1",
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
+    "@angular/platform-browser": "2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
+    "@angular/router-deprecated": "2.0.0-rc.1",
+    "systemjs": "0.19.27",
+    "core-js": "^2.4.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12"
   },
   "devDependencies": {
     "del": "^2.2.0",
-    "gulp": "^3.9.0",
-    "gulp-atom-electron": "^1.1.0",
+    "gulp": "^3.9.1",
+    "gulp-atom-electron": "^1.6.1",
     "gulp-concat": "^2.6.0",
     "gulp-inject": "^3.0.0",
-    "gulp-typescript": "^2.10.0",
-    "run-sequence": "^1.1.5",
-    "typescript": "^1.7.5"
+    "gulp-typescript": "^2.13.6",
+    "run-sequence": "^1.2.1",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   }
 }

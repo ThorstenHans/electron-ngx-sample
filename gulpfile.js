@@ -3,39 +3,49 @@ var gulp = require('gulp'),
 	del = require('del'),
 	inject = require('gulp-inject'),
 	concat = require('gulp-concat'),
-	typescript = require('gulp-typescript'),
+	ts = require('gulp-typescript'),
 	rename = require('gulp-rename'),
 	electron  = require('gulp-atom-electron'),
     symdest = require('gulp-symdest');
 
 
-gulp.task('private:clear', function(done){
+gulp.task('private:clean', function(done){
 	del.sync(['dist/**/*', 'packaged-app/**/*'], { force: true});
 	done();
 });
 
+gulp.task('private:copy-ng2', function(){
+	return gulp.src('./node_modules/@angular/**/*')
+		.pipe(gulp.dest('dist/frontend/vendor/@angular'));
+});
+
+gulp.task('private:copy-rxjs', function(){
+  return gulp.src('./node_modules/rxjs/**/*')
+	  .pipe(gulp.dest('dist/frontend/vendor/rxjs'));
+});
+
 gulp.task('private:build-vendor', function(){
 	return gulp.src([
-		"node_modules/angular2/bundles/angular2-polyfills.js",
-        "node_modules/systemjs/dist/system.src.js",
-        "node_modules/rxjs/bundles/Rx.js",
-        "node_modules/angular2/bundles/angular2.dev.js",
-        "node_modules/angular2/bundles/http.dev.js",
-        "node_modules/angular2/bundles/router.dev.js"
+		"node_modules/core-js/client/shim.min.js",
+        "node_modules/zone.js/dist/zone.js",
+        "node_modules/reflect-metadata/Reflect.js",
+        "node_modules/systemjs/dist/system.src.js"
 		])
-		.pipe(concat('vendor.js'))
-		.pipe(gulp.dest('dist/frontend/scripts'));
+		.pipe(concat('base.js'))
+		.pipe(gulp.dest('dist/frontend/vendor'));
 });
 
 gulp.task('private:build-app', function(){
-    var project = typescript.createProject('tsconfig.json');
+    var project = ts.createProject('./tsconfig.json', {
+		typescript: require('typescript')
+	});
     var tsResult = project.src()
-        .pipe(typescript(project));
-    return tsResult.js.pipe(gulp.dest('dist/frontend'));
+        .pipe(ts(project));
+    return tsResult.js.pipe(gulp.dest('dist/frontend/app'));
 });
 
 gulp.task('private:build-html', function(){
-	var sources = gulp.src('dist/frontend/scripts/vendor.js');
+	var sources = gulp.src('dist/frontend/vendor/base.js');
 
 	return gulp.src('src/index.html')
 		.pipe(inject(sources, {ignorePath: 'dist/frontend',  addRootSlash: false }))
@@ -43,8 +53,8 @@ gulp.task('private:build-html', function(){
 });
 
 gulp.task('private:copy-templates', function(){
-	return gulp.src('src/templates/**.html')
-		.pipe(gulp.dest('dist/frontend/templates'));
+	return gulp.src('src/app/**/*.html')
+		.pipe(gulp.dest('dist/frontend/app'));
 });
 
 gulp.task('private:copy-app-package-file', function(){
@@ -61,7 +71,7 @@ gulp.task('private:copy-app-main-file', function(){
 var buildApp = function(platform, slug){
     gulp.src(['dist/**/*'])
         .pipe(electron({
-            version: '0.36.4',
+            version: '1.2.1',
             platform: platform }))
         .pipe(symdest('packaged-app/ng2-electron-' + slug));
 };
@@ -75,9 +85,11 @@ gulp.task('private:package-app', function(){
 
 gulp.task('default', function(done){
 	inSequence(
-		'private:clear',
+		'private:clean',
 		[
 			'private:build-vendor',
+			'private:copy-rxjs',
+			'private:copy-ng2',
 			'private:build-app',
 			'private:copy-templates',
 			'private:copy-app-package-file',

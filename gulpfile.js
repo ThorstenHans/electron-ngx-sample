@@ -27,9 +27,9 @@ gulp.task('private:copy-rxjs', function(){
 gulp.task('private:build-vendor', function(){
 	return gulp.src([
 		"node_modules/core-js/client/shim.min.js",
-        "node_modules/zone.js/dist/zone.js",
+        "node_modules/zone.js/dist/zone.min.js",
         "node_modules/reflect-metadata/Reflect.js",
-        "node_modules/systemjs/dist/system.src.js"
+        "node_modules/systemjs/dist/system.js"
 		])
 		.pipe(concat('base.js'))
 		.pipe(gulp.dest('dist/frontend/vendor'));

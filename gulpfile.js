@@ -52,6 +52,11 @@ gulp.task('private:build-html', function(){
 		.pipe(gulp.dest('dist/frontend'));
 });
 
+gulp.task('private:copy-sys-config', function(){
+    return gulp.src('src/systemjs.config.js')
+        .pipe(gulp.dest('dist/frontend'));
+});
+
 gulp.task('private:copy-templates', function(){
 	return gulp.src('src/app/**/*.html')
 		.pipe(gulp.dest('dist/frontend/app'));
@@ -83,6 +88,16 @@ gulp.task('private:package-app', function(){
     });
 });
 
+gulp.task('build-app', function(done){
+	inSequence(
+        [
+            'private:build-app',
+            'private:copy-templates'
+        ],
+        'private:build-html',
+        done);
+});
+
 gulp.task('default', function(done){
 	inSequence(
 		'private:clean',
@@ -93,7 +108,8 @@ gulp.task('default', function(done){
 			'private:build-app',
 			'private:copy-templates',
 			'private:copy-app-package-file',
-			'private:copy-app-main-file'
+			'private:copy-app-main-file',
+			'private:copy-sys-config'
 		],
 		'private:build-html',
 		'private:package-app',

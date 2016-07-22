@@ -45,7 +45,7 @@ gulp.task('private:build-app', function(){
 });
 
 gulp.task('private:build-html', function(){
-	var sources = gulp.src('dist/frontend/vendor/base.js');
+	var sources = gulp.src(['dist/frontend/vendor/base.js', 'dist/frontend/styles/bootstrap.min.css']);
 
 	return gulp.src('src/index.html')
 		.pipe(inject(sources, {ignorePath: 'dist/frontend',  addRootSlash: false }))
@@ -76,7 +76,7 @@ gulp.task('private:copy-app-main-file', function(){
 var buildApp = function(platform, slug){
     gulp.src(['dist/**/*'])
         .pipe(electron({
-            version: '1.2.1',
+            version: '1.2.8',
             platform: platform }))
         .pipe(symdest('packaged-app/ng2-electron-' + slug));
 };
@@ -88,8 +88,16 @@ gulp.task('private:package-app', function(){
     });
 });
 
+gulp.task('private:copy-styles', function(){
+    return gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+        .pipe(gulp.dest('dist/frontend/styles'));
+});
+
 gulp.task('build-app', function(done){
-	inSequence(
+
+    console.log("You've to run 'npm run build' at least one time");
+	
+    inSequence(
         [
             'private:build-app',
             'private:copy-templates'
@@ -103,6 +111,7 @@ gulp.task('default', function(done){
 		'private:clean',
 		[
 			'private:build-vendor',
+            'private:copy-styles',
 			'private:copy-rxjs',
 			'private:copy-ng2',
 			'private:build-app',

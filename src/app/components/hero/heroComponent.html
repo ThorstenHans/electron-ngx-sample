@@ -1,0 +1,27 @@
+<div class="container">
+<div class="page-header">
+    <h1>{{title}}</h1>
+</div>
+<h2>{{hero?.name}} details!</h2>
+
+<form *ngIf="hero">
+  <div class="form-group">
+    <label for="heroName">Hero-Name</label>
+    <input type="text" 
+            class="form-control" 
+            id="heroName" 
+            placeholder="Superman?" 
+            [(ngModel)]="hero.name">
+  </div>
+  <div class="form-group" *ngIf="hero.level">
+    <label for="heroLevel">Hero-Level</label>
+    <input type="text" 
+            class="form-control" 
+            disabled="disabled" 
+            id="heroLevel" 
+            placeholder="666" 
+            [(ngModel)]="hero.level">
+  </div>
+  <button class="btn btn-default" (click)="sendNotification()">Send Notification</button>
+</form>
+ </div>

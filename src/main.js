@@ -1,29 +1,23 @@
-const electron = require('electron');
-const {app} = electron;
-const {BrowserWindow} = electron;
+const {app, BrowserWindow} = require('electron')
+let win;
 
-let mainWindow;
-
-function createWindow() {
-  mainWindow = new BrowserWindow({width: 960, height: 700, title:'Electron-TS-Angular2'});
-  mainWindow.loadURL(`file://${__dirname}/frontend/index.html`);
-  mainWindow.webContents.openDevTools();
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+function createWindow () {
+  win = new BrowserWindow({width: 800, height: 600})
+  win.loadURL(`file://${__dirname}/frontend/index.html`)
+  win.webContents.openDevTools()
+  win.on('closed', () => {
+    win = null;
   });
 }
-
-app.on('ready', createWindow);
-
+app.on('ready', createWindow)
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+  app.quit()
   }
 });
 
 app.on('activate', () => {
-  if (mainWindow === null) {
+  if (win === null) {
     createWindow();
   }
 });

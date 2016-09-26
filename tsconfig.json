@@ -9,9 +9,5 @@
     "removeComments": false,
     "noImplicitAny": false
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "packaged-app"
-  ]
+  "compileOnSave": false
 }

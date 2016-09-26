@@ -76,7 +76,7 @@ gulp.task('private:copy-app-main-file', function(){
 var buildApp = function(platform, slug){
     gulp.src(['dist/**/*'])
         .pipe(electron({
-            version: '1.2.8',
+            version: '1.4.0',
             platform: platform }))
         .pipe(symdest('packaged-app/ng2-electron-' + slug));
 };
@@ -96,7 +96,7 @@ gulp.task('private:copy-styles', function(){
 gulp.task('build-app', function(done){
 
     console.log("You've to run 'npm run build' at least one time");
-	
+
     inSequence(
         [
             'private:build-app',
@@ -111,7 +111,7 @@ gulp.task('default', function(done){
 		'private:clean',
 		[
 			'private:build-vendor',
-            'private:copy-styles',
+      'private:copy-styles',
 			'private:copy-rxjs',
 			'private:copy-ng2',
 			'private:build-app',
@@ -121,6 +121,6 @@ gulp.task('default', function(done){
 			'private:copy-sys-config'
 		],
 		'private:build-html',
-		'private:package-app',
+//		'private:package-app',
 		done);
 });

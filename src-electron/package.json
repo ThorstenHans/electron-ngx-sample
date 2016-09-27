@@ -1,5 +1,5 @@
 {
-	"name" :"kittens by GitHub Electron and Angular 2",
-	"version": "0.2.0",
+	"name" :"AwesomeKittens",
+	"version": "0.2.2",
 	"main": "main.js"
 }

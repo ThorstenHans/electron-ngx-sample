@@ -1,14 +1,14 @@
 {
   "name": "electron-ts-ng2",
-  "version": "0.1.0",
-  "description": "kittens usign electron and Angular2",
+  "version": "0.1.2",
+  "description": "Tech Demo for Angular2 / TypeScript / Electron",
   "main": "index.js",
   "scripts": {
     "postinstall": "typings install",
     "typings": "typings",
-    "start": "gulp default && electron dist"
+    "start": "gulp default"
   },
-  "keywords": [],
+  "keywords": ["electron", "angular2", "typescript"],
   "author": "Thorsten Hans <thorsten.hans@gmail.com> (http://www.xplatform.rocks/)",
   "license": "ISC",
   "dependencies": {

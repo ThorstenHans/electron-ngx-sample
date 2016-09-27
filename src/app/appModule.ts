@@ -8,10 +8,11 @@ import {appRoutingProviders, APP_ROUTING} from './appRoutes';
 import {RootComponent} from './components/root/root';
 import {KittenDetailsComponent} from './components/kittendetails/kittendetails';
 import {KittenListComponent} from './components/kittenlist/kittenlist';
+import {FooterComponent} from './components/footer/footer';
 
 @NgModule({
     imports: [BrowserModule, APP_ROUTING],
-    declarations: [RootComponent, KittenDetailsComponent, KittenListComponent],
+    declarations: [RootComponent, KittenDetailsComponent, KittenListComponent, FooterComponent],
     bootstrap: [RootComponent],
     providers: [
         appRoutingProviders,

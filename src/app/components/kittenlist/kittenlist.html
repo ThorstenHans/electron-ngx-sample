@@ -1,18 +1,14 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Name</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="clickable" *ngFor="let kitten of kittens" (click)="openKitten(kitten.id)">
-                    <td>{{kitten.id}}</td>
-                    <td>{{kitten.name}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="col-md-6 col-md-offset-3">
+        <p class="lead">Hey, see the following list of kittens and pick one.</p>
+
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="list-group">
+            <li class="list-group-item clickable" *ngFor="let kitten of kittens" (click)="openKitten(kitten.id)">
+                {{kitten.name}}
+            </li>
+        </ul>
     </div>
 </div>

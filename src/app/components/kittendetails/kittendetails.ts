@@ -22,7 +22,8 @@ export class KittenDetailsComponent implements OnInit {
     }
 
     public notify() {
-        let notification = this._notificationService.notify('Miou!', `This is ${this.kitten.name}, miou!`);
+        let notification = this._notificationService.notify('Miou!',
+            `This is ${this.kitten.name}, miou!`, `http://placekitten.com/100/100`);
         notification.onclick = () => {
             // do something here
         };

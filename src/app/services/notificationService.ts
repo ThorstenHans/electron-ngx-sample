@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
- 
-export interface INotification{
+import {Injectable} from '@angular/core';
 
-     onclick: () => void;
+export interface INotification {
+
+    onclick: () => void;
 }
 
 declare var Notification: any;
@@ -10,9 +10,10 @@ declare var Notification: any;
 @Injectable()
 export class NotificationService {
 
-    public notify(title: string, body: string): INotification {
+    public notify(title: string, body: string, icon: string = null): INotification {
         return <INotification>(new Notification(title, {
-           body: body
+            body: body,
+            icon: icon
         }));
 
     }

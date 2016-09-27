@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Electron-TS-Angular2</title>
@@ -16,16 +18,18 @@
 
     <!-- inject:css -->
     <!-- endinject -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
 </head>
 
 <body>
     <kittens>Loading Angular2 App</kittens>
-    <!-- inject:js -->
-    <!-- endinject -->
 
-    <script src="systemjs.config.js"></script>
     <script>
-        System.import('app/boot').catch(function(err){ console.error(err); });
+        System.import('app/boot').catch(function (err) {
+            console.error(err);
+        });
     </script>
 </body>
 

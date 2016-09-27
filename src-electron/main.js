@@ -3,11 +3,20 @@ const { app, BrowserWindow, globalShortcut } = require('electron');
 let win;
 
 function createWindow() {
-    win = new BrowserWindow({ width: 800, height: 600 });
+    win = new BrowserWindow({
+        width: 800,
+        height: 800,
+        minWidth: 700,
+        minHeight: 700,
+        fullscreenable: true,
+    });
+
     win.loadURL(`file://${__dirname}/renderer/index.html`);
-    globalShortcut.register('CmdOrCtrl+Shift+D', ()=>{
+
+    globalShortcut.register('CmdOrCtrl+Shift+D', ()=> {
         win.webContents.toggleDevTools();
     });
+
     win.on('closed', () => {
         win = null;
     });

@@ -12,6 +12,7 @@ export class KittenDetailsComponent implements OnInit {
 
     public kitten: Kitten = null;
     public showNotificationButton: boolean = true;
+
     constructor(private _route: ActivatedRoute,
                 private _notificationService: NotificationService,
                 private _electronService: ElectronService,
@@ -23,11 +24,13 @@ export class KittenDetailsComponent implements OnInit {
         this._route.data.forEach((data: { kitten: Kitten }) => {
             this.kitten = data.kitten;
         });
-        this._electronService.ipcRenderer.on('toggle-notifications', () =>{
-            this._ngZone.run(()=>{
-               this.showNotificationButton = !this.showNotificationButton;
+        if (this._electronService.ipcRenderer) {
+            this._electronService.ipcRenderer.on('toggle-notifications', () => {
+                this._ngZone.run(() => {
+                    this.showNotificationButton = !this.showNotificationButton;
+                });
             });
-        });
+        }
     }
 
     public notify() {

@@ -1,26 +1,34 @@
-const { app, BrowserWindow, globalShortcut } = require('electron');
+const { app, BrowserWindow, globalShortcut, Menu } = require('electron');
+const path = require('path');
+const url = require('url');
+const menuBuilder = require('./menu-builder');
 
 let win;
-
-function createWindow() {
+let createWindow = () => {
     win = new BrowserWindow({
-        width: 800,
+        width: 1000,
         height: 800,
-        minWidth: 700,
-        minHeight: 700,
-        fullscreenable: true,
+        minWidth: 800,
+        minHeight: 600,
+        center: true,
+        fullscreenable: true
     });
-
-    win.loadURL(`file://${__dirname}/renderer/index.html`);
-
-    globalShortcut.register('CmdOrCtrl+Shift+D', ()=> {
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, '/web/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+    menuBuilder.buildMenu();
+    globalShortcut.register('CmdOrCtrl+Shift+D', () => {
         win.webContents.toggleDevTools();
     });
 
     win.on('closed', () => {
         win = null;
     });
-}
+};
+
+
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {

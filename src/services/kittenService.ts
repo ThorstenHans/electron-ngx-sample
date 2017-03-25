@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Kitten} from '../models/kitten';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class KittenService {
@@ -13,11 +14,11 @@ export class KittenService {
         this._kittens.push(new Kitten(4, 'Buddy', 470, 380));
     }
 
-    public getAllKittens(): Array<Kitten> {
-        return this._kittens;
+    public getAllKittens(): Observable<Array<Kitten>> {
+        return Observable.of(this._kittens);
     }
 
-    public getKittenById(id: number): Kitten {
-        return this._kittens.filter(kitten=>kitten.id === id)[0];
+    public getKittenById(id: number): Observable<Kitten> {
+        return Observable.of(this._kittens.filter(kitten => kitten.id === id)[0]);
     }
 }

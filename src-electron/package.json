@@ -1,5 +1,5 @@
 {
-	"name" :"AwesomeKittens",
-	"version": "0.2.2",
+	"name" :"electron-ngx-sample",
+	"version": "1.0.0",
 	"main": "main.js"
 }

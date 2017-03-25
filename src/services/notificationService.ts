@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
+declare const Notification: any;
 
 export interface INotification {
-
     onclick: () => void;
 }
-
-declare var Notification: any;
 
 @Injectable()
 export class NotificationService {

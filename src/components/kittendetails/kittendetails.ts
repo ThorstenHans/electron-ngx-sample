@@ -24,7 +24,7 @@ export class KittenDetailsComponent implements OnInit {
         this._route.data.forEach((data: { kitten: Kitten }) => {
             this.kitten = data.kitten;
         });
-        if (this._electronService.ipcRenderer) {
+        if (ElectronService.runningInElectron) {
             this._electronService.ipcRenderer.on('toggle-notifications', () => {
                 this._ngZone.run(() => {
                     this.showNotificationButton = !this.showNotificationButton;

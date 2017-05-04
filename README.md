@@ -14,8 +14,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the web project. The build artifacts will be stored in the `dist/web` directory. 
 
-Run `ng prod` to build the web project for production. The build artifacts will be stored in the `dist/web` directory. 
+Run `npm run prod` to build the web project for production. The build artifacts will be stored in the `dist/web` directory. 
  
-Run `ng build-desktop` to build the desktop project. The build artifacts will be stored in the `dist/desktop` directory. 
+Run `npm run build-desktop` to build the desktop project. The build artifacts will be stored in the `dist/desktop` directory. 
 
-Run `ng prod-desktop` to build the desktop project for production. The build artifacts will be stored in the `dist/desktop` directory.
+Run `npm run prod-desktop` to build the desktop project for production. The build artifacts will be stored in the `dist/desktop` directory.
